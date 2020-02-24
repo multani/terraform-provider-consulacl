@@ -48,7 +48,7 @@ release: $(PLATFORMS)
 
 .PHONY: $(PLATFORMS)
 $(PLATFORMS):
-	GOPROXY="off" GOFLAGS="-mod=vendor" GOOS=$(os) GOARCH=$(arch) go build -ldflags="-s -w" -o '$(RELEASE_DIR)/$(BASE)-$(os)-$(arch)'
+	GO_BUILD_OPTS="-a -installsuffix cgo" CGO_ENABLED=0 GGOFLAGS="-mod=vendor" GOOS=$(os) GOARCH=$(arch) go build -ldflags="-s -w" -o '$(RELEASE_DIR)/$(BASE)-$(os)-$(arch)'
 
 .PHONY: compress
 compress:
